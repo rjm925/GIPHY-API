@@ -9,6 +9,7 @@ function renderButtons() {
   $("#animalButtons").empty();
   for (var i = 0; i < topics.length; i++) {
     var button = $("<button>");
+    button.addClass("btn btn-info");
     button.attr("value", topics[i]);
     button.append(topics[i]);
     $("#animalButtons").append(button);
@@ -24,7 +25,6 @@ function getGIFs() {
     url: queryURL,
     method: 'GET'
   }).done(function(response) {
-  	console.log(response);
 
     for (var i = 0; i < response.data.length; i++) {
     	var info = $("<div>");
@@ -40,7 +40,6 @@ function getGIFs() {
 }
 
 function playStop() {
-	console.log($(this).attr("count"));
 	if ($(this).attr("count") === "0") {
 		var static = $(this).attr("src");
 		var gif = $(this).attr("src").replace("giphy_s.gif", "giphy.gif");
@@ -53,7 +52,6 @@ function playStop() {
 		$('img[src="' + gif + '"]').attr('src', static);
 		$(this).attr("count", "0");
 	}
-	console.log($(this).attr("count"));
 }
 
 $("#addAnimal").on("click", function(event) {

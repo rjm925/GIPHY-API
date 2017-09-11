@@ -1,14 +1,18 @@
 button {
 	margin: 5px;
+	padding: 0px 5px 0px 5px;
+}
+
+.container {
+	width: 95%;
 }
 
 #animal-input {
-	width: 90%;
+	width: 100%;
 	margin-bottom: 5px;
 }
 
 .gifs {
 	display: inline-block;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin: 0px 5px 5px 5px;
 }
