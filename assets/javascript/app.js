@@ -41,15 +41,13 @@ function getGIFs() {
 
 function playStop() {
 	if ($(this).attr("count") === "0") {
-		var static = $(this).attr("src");
 		var gif = $(this).attr("src").replace("giphy_s.gif", "giphy.gif");
-		$('img[src="' + static + '"]').attr('src', gif);
+		$(this).attr("src", gif);
 		$(this).attr("count", "1");
 	}
 	else {
-		var gif = $(this).attr("src");
 		var static = $(this).attr("src").replace("giphy.gif", "giphy_s.gif");
-		$('img[src="' + gif + '"]').attr('src', static);
+		$(this).attr("src", static);
 		$(this).attr("count", "0");
 	}
 }
