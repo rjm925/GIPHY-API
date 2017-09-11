@@ -16,3 +16,7 @@ button {
 	display: inline-block;
 	margin: 0px 5px 5px 5px;
 }
+
+img {
+	height: 200px;
+}
