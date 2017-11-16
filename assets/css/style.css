@@ -1,10 +1,16 @@
+body {
+	background-color: #666666;
+}
+
+h1 {
+	background-color: black;
+	color: white;
+	padding: 20px;
+}
+
 button {
 	margin: 5px;
 	padding: 0px 5px 0px 5px;
-}
-
-.container {
-	width: 95%;
 }
 
 #animal-input {
@@ -14,6 +20,7 @@ button {
 
 .gifs {
 	display: inline-block;
+	color: #ffffff;
 	margin: 0px 5px 5px 5px;
 }
 

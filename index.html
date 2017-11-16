@@ -5,16 +5,14 @@
 		<title>Animal GIFs</title>
 
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 	</head>
 
 	<body>
+		<h1 class="text-center">Animal GIFs</h1>
 		<div class="container">
 
 			<div class="row">
@@ -27,9 +25,15 @@
 				<div class="col-md-9" id="animals"></div>
 				<div class="col-md-3">
 					<form id="animal-form">
-						<label for="animal-input">Add an animal</label><br>
-						<input type="text" id="animal-input"><br>
-						<input id="addAnimal" type="submit" value="Submit">
+						<div class="card">
+							<div class="card-header">
+								<label for="animal-input">Add an animal</label><br>
+							</div>
+							<div class="card-body">
+								<input type="text" id="animal-input"><br>
+								<input id="addAnimal" type="submit" value="Submit">
+							</div>
+						</div>
 					</form>								
 				</div>				
 			</div>

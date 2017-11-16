@@ -1,73 +1,111 @@
+// Array of topics
 var topics = ["dog", "cat", "rabbit", "hamster", "skunk", "goldfish", "bird", "ferret", "turtle", "sugar glider", "chinchilla", "hedgehog", "gerbil"];
 
+// Create buttons
 renderButtons();
 
+// On click events
 $(document).on("click", "button", getGIFs);
 $(document).on("click", "img", playStop);
 
-function renderButtons() {
-  $("#animalButtons").empty();
-  for (var i = 0; i < topics.length; i++) {
-    var button = $("<button>");
-    button.addClass("btn btn-info");
-    button.attr("value", topics[i]);
-    button.append(topics[i]);
-    $("#animalButtons").append(button);
-  }
-}
-
-function getGIFs() {
-	$("#animals").empty();
-	var selected = $(this).attr("value");
-	var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=10&q=" + selected;
-
-  $.ajax({
-    url: queryURL,
-    method: 'GET'
-  }).done(function(response) {
-
-    for (var i = 0; i < response.data.length; i++) {
-    	var info = $("<div>");
-    	var holder = $("<div>");
-    	info.addClass("gifs");
-    	info.append("Rating: " + response.data[i].rating);
-    	holder.addClass("static");
-    	holder.append("<img src=" + response.data[i].images.original_still.url + " count=0>");
-    	info.append(holder);
-      $("#animals").append(info);
-    }
-  })
-}
-
-function playStop() {
-	if ($(this).attr("count") === "0") {
-		var gif = $(this).attr("src").replace("giphy_s.gif", "giphy.gif");
-		$(this).attr("src", gif);
-		$(this).attr("count", "1");
-	}
-	else {
-		var static = $(this).attr("src").replace("giphy.gif", "giphy_s.gif");
-		$(this).attr("src", static);
-		$(this).attr("count", "0");
-	}
-}
-
+// Add animal event
 $("#addAnimal").on("click", function(event) {
+	// Prevents HTML from reloading
 	event.preventDefault();
-	var userInput = $("#animal-input").val().toLowerCase();
+	// Gets user input
+	var userInput = $("#animal-input").val().trim().toLowerCase();
 
+	// Checks if user input is blank
 	if (userInput !== "") {
+		// Variable to check if animal already has button
 		var check = true;
+		// Loops through topic array
 		for (var i = 0; i < topics.length; i++) {
+			// If input is already a topic
 			if (userInput === topics[i]) {
+				// Check failed
 				check = false;
 			}
 		}
-		$("#animal-form").children("input").eq(0).val("");
+		// Clears input line
+		$("#animal-input").val("");
 
+		// If new animal
 		if (check) {
+			// Adds to topics array
 			topics.push(userInput);
+			// Creates animal buttons
 			renderButtons();
 		}
 	}
 });
+
+// Function to create buttons on html
+function renderButtons() {
+	// Emptys div holding buttons
+  $("#animalButtons").empty();
+  // Loops through topics array
+  for (var i = 0; i < topics.length; i++) {
+  	// Create button
+    var button = $("<button>");
+    // Add class to button
+    button.addClass("btn btn-info");
+    // Assigns value to button
+    button.attr("value", topics[i]);
+    // Append word to button
+    button.append(topics[i]);
+    // Append button to div
+    $("#animalButtons").append(button);
+  }
+}
+
+// Gets GIFs
+function getGIFs() {
+	// Clears any animals gifs displayed
+	$("#animals").empty();
+	// Gets value of selected button
+	var selected = $(this).attr("value");
+	// Creates query for ajax call
+	var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=10&q=" + selected;
+
+	// Ajax call to api
+  $.ajax({
+    url: queryURL,
+    method: 'GET'
+  }).done(function(response) {
+  	// Loops through results
+    for (var i = 0; i < response.data.length; i++) {
+    	// Creates div
+    	var card = $("<div>");
+    	// Add gifs class to div
+    	card.addClass("gifs");
+    	// Append rating to div
+    	card.append("Rating: " + response.data[i].rating);
+    	// Add image to holder with still url
+    	card.append("<br><img src=" + response.data[i].images.original_still.url + " count=0>");
+    	// Append card to animals div
+      $("#animals").append(card);
+    }
+  })
+}
+
+// Switches between still and animated gif
+function playStop() {
+	// Check if count value is 0
+	if ($(this).attr("count") === "0") {
+		// Creates animated gif url
+		var gif = $(this).attr("src").replace("giphy_s.gif", "giphy.gif");
+		// Changes url of src
+		$(this).attr("src", gif);
+		// Changes count value to 1
+		$(this).attr("count", "1");
+	}
+	else {
+		// Creates still gif url
+		var static = $(this).attr("src").replace("giphy.gif", "giphy_s.gif");
+		// Changes url of src
+		$(this).attr("src", static);
+		// Changes count value to 0
+		$(this).attr("count", "0");
+	}
+}
