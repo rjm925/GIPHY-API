@@ -1,5 +1,5 @@
 // Array of topics
-var topics = ["dog", "cat", "rabbit", "hamster", "skunk", "goldfish", "bird", "ferret", "turtle", "sugar glider", "chinchilla", "hedgehog", "gerbil"];
+const topics = ["dog", "cat", "rabbit", "hamster", "skunk", "goldfish", "bird", "ferret", "turtle", "sugar glider", "chinchilla", "hedgehog", "gerbil"];
 
 // Create buttons
 renderButtons();
@@ -13,14 +13,14 @@ $("#addAnimal").on("click", function(event) {
 	// Prevents HTML from reloading
 	event.preventDefault();
 	// Gets user input
-	var userInput = $("#animal-input").val().trim().toLowerCase();
+	let userInput = $("#animal-input").val().trim().toLowerCase();
 
 	// Checks if user input is blank
 	if (userInput !== "") {
 		// Variable to check if animal already has button
-		var check = true;
+		let check = true;
 		// Loops through topic array
-		for (var i = 0; i < topics.length; i++) {
+		for (let i = 0; i < topics.length; i++) {
 			// If input is already a topic
 			if (userInput === topics[i]) {
 				// Check failed
@@ -45,9 +45,9 @@ function renderButtons() {
 	// Emptys div holding buttons
   $("#animalButtons").empty();
   // Loops through topics array
-  for (var i = 0; i < topics.length; i++) {
+  for (let i = 0; i < topics.length; i++) {
   	// Create button
-    var button = $("<button>");
+    let button = $("<button>");
     // Add class to button
     button.addClass("btn btn-info");
     // Assigns value to button
@@ -64,9 +64,9 @@ function getGIFs() {
 	// Clears any animals gifs displayed
 	$("#animals").empty();
 	// Gets value of selected button
-	var selected = $(this).attr("value");
+	let selected = $(this).attr("value");
 	// Creates query for ajax call
-	var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=10&q=" + selected;
+	let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=10&q=" + selected;
 
 	// Ajax call to api
   $.ajax({
@@ -74,9 +74,9 @@ function getGIFs() {
     method: 'GET'
   }).done(function(response) {
   	// Loops through results
-    for (var i = 0; i < response.data.length; i++) {
+    for (let i = 0; i < response.data.length; i++) {
     	// Creates div
-    	var card = $("<div>");
+    	let card = $("<div>");
     	// Add gifs class to div
     	card.addClass("gifs");
     	// Append rating to div
@@ -94,7 +94,7 @@ function playStop() {
 	// Check if count value is 0
 	if ($(this).attr("count") === "0") {
 		// Creates animated gif url
-		var gif = $(this).attr("src").replace("giphy_s.gif", "giphy.gif");
+		let gif = $(this).attr("src").replace("giphy_s.gif", "giphy.gif");
 		// Changes url of src
 		$(this).attr("src", gif);
 		// Changes count value to 1
@@ -102,7 +102,7 @@ function playStop() {
 	}
 	else {
 		// Creates still gif url
-		var static = $(this).attr("src").replace("giphy.gif", "giphy_s.gif");
+		let static = $(this).attr("src").replace("giphy.gif", "giphy_s.gif");
 		// Changes url of src
 		$(this).attr("src", static);
 		// Changes count value to 0
